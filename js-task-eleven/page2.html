@@ -6,7 +6,7 @@
     <title>Page 2</title>
 </head>
 <body>
-    <div class="containers">
+    <div class="containers" style="text-align: center;">
         <img id="genderPhoto" alt="Profile" style="width: 200px; height: 200px;">
         <p id="welcome"></p>
     </div>
@@ -33,15 +33,17 @@
 
         let userName = getCookie("user");
         let userGender = getCookie("gender");
-
+        let userColor = getCookie("color"); 
         let counter = parseInt(getCookie("counter")) || 0;
         counter++;
         setCookie("counter", counter);
 
         if (userName) {
-            document.getElementById("welcome").textContent =
-                `Welcome ${userName}. You have entered this page ${counter} times.`;
-        }
+         let welcomeMessage = document.getElementById("welcome"); 
+         let coloredName = `<span style="color: ${userColor};">${userName}</span>`;
+         welcomeMessage.innerHTML = 
+        `Welcome ${coloredName}. You have entered this page ${counter} times.`;
+}
 
         let genderPhoto = document.getElementById("genderPhoto");
         if (userGender === "male") {
