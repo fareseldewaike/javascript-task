@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 2</title>
+</head>
+<body>
+    <div class="containers">
+        <img id="genderPhoto" alt="Profile" style="width: 200px; height: 200px;">
+        <p id="welcome"></p>
+    </div>
+
+    <script>
+        function getCookie(name) {
+            let cookies = document.cookie.split(";");
+            for (let cookie of cookies) {
+                let [key, value] = cookie.split("=");
+                if (key && value) {  
+                    key = key.trim();
+                    value = value.trim();
+                    if (key === name) {
+                        return value;
+                    }
+                }
+            }
+            return null;  
+        }
+
+        function setCookie(name, value) {
+            document.cookie = `${name}=${value}; path=/;`;
+        }
+
+        let userName = getCookie("user");
+        let userGender = getCookie("gender");
+
+        let counter = parseInt(getCookie("counter")) || 0;
+        counter++;
+        setCookie("counter", counter);
+
+        if (userName) {
+            document.getElementById("welcome").textContent =
+                `Welcome ${userName}. You have entered this page ${counter} times.`;
+        }
+
+        let genderPhoto = document.getElementById("genderPhoto");
+        if (userGender === "male") {
+            genderPhoto.src = "images/1.jpg";
+        } else if (userGender === "female") {
+            genderPhoto.src = "images/2.jpg";
+        }
+    </script>
+</body>
+</html>
